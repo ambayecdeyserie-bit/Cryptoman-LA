@@ -3,7 +3,7 @@ async function main() {
   console.log("Deploying contracts with the account:", deployer.address);
 
   const Contract = await ethers.getContractFactory("YourContract");
-  const contract = await Contract.deploy();
+  const contract = await Contract.deploy("Hello, Blockchain!");
 
   await contract.deployed();
 
