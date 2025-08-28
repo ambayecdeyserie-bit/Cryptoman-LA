@@ -1,13 +1,1 @@
-{
-  "name": "cryptonout-controller",
-  "version": "1.0.0",
-  "scripts": {
-    "compile": "hardhat compile",
-    "deploy": "hardhat run scripts/deploy.js --network skale"
-  },
-  "devDependencies": {
-    "@nomiclabs/hardhat-ethers": "^2.2.3",
-    "ethers": "^5.7.2",
-    "hardhat": "^2.20.0"
-  }
-}
+{"name": "cryptoman-la","version": "1.0.0","description": "Cryptoman-LA blockchain deployment ready.","scripts": {"test": "npx hardhat test","deploy": "npx hardhat run scripts/deploy.js --network goerli"},"devDependencies": {"hardhat": "^2.22.0","@nomiclabs/hardhat-ethers": "^2.2.2","ethers": "^5.7.2"}}
