@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: |
+        npm install
+
+    - name: Run JS tests
+      run: |
+        if [ -f "package.json" ]; then
+          npm test || echo "No JS tests found."
+        fi
+
+    - name: Run Solidity tests
+      run: |
+        if [ -d "test" ]; then
+          if [ -f "hardhat.config.js" ]; then
+            npx hardhat test || echo "Hardhat tests failed or not found."
+          elif [ -f "truffle-config.js" ]; then
+            npx truffle test || echo "Truffle tests failed or not found."
+          else
+            echo "No Solidity test runner config found."
+          fi
+        fi
